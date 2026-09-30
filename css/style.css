@@ -291,7 +291,7 @@ h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
   .hero-media img { object-position: 68% center; }
   .hero-media::after { background: linear-gradient(90deg, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.9) 48%, rgba(8,8,8,0.46) 78%, rgba(8,8,8,0.18) 100%), linear-gradient(180deg, rgba(8,8,8,0.18) 0%, transparent 22%, transparent 62%, rgba(8,8,8,0.8) 100%); }
   .value-layout { grid-template-columns: 1fr; gap: 42px; }
-  .value-photo { aspect-ratio: 4 / 3; }
+  .value-photo { min-height: 0; aspect-ratio: 4 / 3; }
   .value-photo img { object-position: center top; }
   .value-content { padding-top: 0; }
   .services-grid, .ac-layout, .split-copy-grid, .electrical-scope-grid { grid-template-columns: 1fr; }
