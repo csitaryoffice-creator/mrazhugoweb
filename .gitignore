@@ -1,0 +1,11 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.vercel/
+Képek/
+image*.jpeg
+logó.png
+*.zip
+contact.php
+README.txt
