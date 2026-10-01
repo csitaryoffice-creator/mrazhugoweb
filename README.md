@@ -9,7 +9,6 @@ Statikus HTML/CSS/JavaScript weboldal Vercelhez előkészített ajánlatkérő v
 3. Build Command és Output Directory nem szükséges.
 4. Állítsd be a következő környezeti változókat Production, Preview és Development környezetben:
    - `RESEND_API_KEY`
-   - `CONTACT_EMAIL`
    - `RESEND_FROM_EMAIL`
 5. A `RESEND_FROM_EMAIL` feladó domainjét előbb hitelesíteni kell a Resendben.
 
@@ -20,7 +19,6 @@ Az ajánlatkérő űrlapot az `api/contact.js` Vercel Function kezeli.
 Az oldal forrásában még cserélni kell a következő helyőrzőket a valós adatokra:
 
 - `[VÁLLALKOZÁS NEVE]`
-- `[E-MAIL]`
 - `[CÍM]`
 - `[GOOGLE BUSINESS PROFILE URL]`
 - `[SEARCH CONSOLE TOKEN]`

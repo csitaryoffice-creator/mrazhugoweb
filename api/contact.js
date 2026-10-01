@@ -24,7 +24,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).send('Ez a végpont csak POST kérést fogad.');
   }
 
-  const recipient = process.env.CONTACT_EMAIL;
+  const recipient = 'klimaszereles1204@gmail.com';
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM_EMAIL;
   if (!recipient || !apiKey || !from) return redirect(res, 'config');
