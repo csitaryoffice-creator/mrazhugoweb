@@ -86,7 +86,7 @@ h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .value-heading { margin-bottom: clamp(48px, 6vw, 78px); }
 .value-heading h2 { max-width: 1040px; }
 .value-layout { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: stretch; gap: clamp(44px, 7vw, 96px); }
-.value-photo { position: relative; min-height: 0; aspect-ratio: 3 / 4; }
+.value-photo { position: relative; align-self: stretch; min-height: 0; aspect-ratio: auto; }
 .value-photo img { display: block; position: static; object-position: center top; }
 .value-content { padding-top: clamp(4px, 1.5vw, 20px); color: var(--muted); font-size: clamp(1.02rem, 1.35vw, 1.12rem); }
 .value-content p { max-width: 650px; }
@@ -167,7 +167,7 @@ h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .electrical-scope-copy { min-width: 0; max-width: 760px; order: 1; }
 .electrical-scope-copy strong { color: var(--text); font-weight: 760; }
 .electrical-scope-copy .button { margin-top: 24px; }
-.electrical-scope-photo { align-self: start; min-height: 0; aspect-ratio: 4 / 5; order: 2; }
+.electrical-scope-photo { align-self: stretch; min-height: 0; aspect-ratio: auto; order: 2; }
 .electrical-scope-photo img { display: block; position: static; object-position: 68% center; }
 .trust-section { overflow: hidden; border-top: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); background: var(--bg-soft); }
 .trust-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
