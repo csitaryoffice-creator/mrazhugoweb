@@ -94,6 +94,9 @@ h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .value-benefits { max-width: 650px; margin: clamp(32px, 4vw, 48px) 0 34px; padding: 10px 0; border-top: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); list-style: none; }
 .value-benefits li { position: relative; padding: 13px 16px 13px 28px; color: var(--text); font-weight: 700; }
 .value-benefits li::before { position: absolute; top: 1.45em; left: 4px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); content: ""; }
+@media (min-width: 821px) {
+  .value-photo img { position: absolute; inset: 0; }
+}
 .services-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
 .service-card { grid-column: span 2; min-height: 380px; padding: clamp(30px, 3.3vw, 46px); border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
 .service-card:nth-child(n+4) { grid-column: span 3; }
