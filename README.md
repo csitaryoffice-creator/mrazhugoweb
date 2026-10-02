@@ -22,7 +22,7 @@ Ha elkészül a Google Cégprofil, annak valós URL-je hozzáadható a struktur�
 
 ## Kapcsolati űrlap
 
-A DotRoll ingyenes tárhelye nem futtat PHP-t. Ezért az űrlap nem szerverre küldi az adatokat, hanem egy kitöltött e-mailt nyit meg a látogató levelezőprogramjában. Automatikus e-mail-küldéshez külső űrlapszolgáltató vagy PHP-képes fizetős tárhely szükséges.
+A kapcsolatfelvételi űrlap JavaScript `fetch()` kéréssel közvetlenül a Web3Forms HTTPS-végpontjára küldi az adatokat. Az oldal nem töltődik újra, az eredmény helyben jelenik meg. PHP-ra vagy saját levelező kiszolgálóra nincs szükség.
 
 ## Helyi megnyitás
 

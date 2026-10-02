@@ -21,9 +21,7 @@ A telefonszám 06 70 701 4527 formában szerepel. Ha ez változik, az index.html
 A tulajdon hitelesítése DNS-rekorddal vagy a Google által adott HTML-metaelemmel végezhető el. A hitelesítés után küldje be a https://klimaszerelo-villanyszerelo.hu/sitemap.xml címet.
 
 4. Kapcsolati űrlap
-A DotRoll ingyenes tárhelye statikus, PHP nem fut rajta. Az űrlap ezért a látogató levelezőprogramjában nyit meg egy kitöltött e-mailt a klimaszereles1204@gmail.com címre. A látogatónak az e-mailt a levelezőprogramban kell elküldenie.
-
-Automatikus háttérben történő küldéshez külső űrlapszolgáltató vagy PHP-képes fizetős tárhely szükséges.
+Az űrlap JavaScript fetch() kéréssel a Web3Forms HTTPS-végpontjára küldi az adatokat. Az oldal nem töltődik újra, a sikeres vagy hibás beküldés eredménye az űrlap felett jelenik meg. PHP-ra nincs szükség.
 
 5. Galériaképek
 Az optimalizált WebP képek az images mappában vannak. Új kép hozzáadásakor WebP formátumot, 4:3 képarányt és legfeljebb körülbelül 1200 px szélességet használjon. Az index.html fájlban mindig adjon meg természetes alt szöveget, valamint width és height értéket.

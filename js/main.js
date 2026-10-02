@@ -236,32 +236,50 @@
   const contactForm = document.querySelector('[data-contact-form]');
   const status = document.querySelector('[data-form-status]');
   if (contactForm) {
-    contactForm.addEventListener('submit', (event) => {
+    const submitButton = contactForm.querySelector('.submit-button');
+    const defaultButtonText = submitButton ? submitButton.textContent : '';
+
+    contactForm.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!contactForm.reportValidity()) return;
 
-      const data = new FormData(contactForm);
-      const recipient = contactForm.dataset.recipient;
-      const subject = `Ajánlatkérés – ${data.get('name') || 'weboldal'}`;
-      const body = [
-        `Név: ${data.get('name') || ''}`,
-        `Telefonszám: ${data.get('phone') || ''}`,
-        `E-mail: ${data.get('email') || ''}`,
-        `Település: ${data.get('city') || 'nincs megadva'}`,
-        `Szolgáltatás: ${data.get('service') || 'nincs kiválasztva'}`,
-        '',
-        'Üzenet:',
-        data.get('message') || 'nincs megadva'
-      ].join('\n');
-
       if (status) {
-        status.textContent = 'Az e-mail elkészült. A küldéshez erősítse meg az üzenetet a megnyíló levelezőprogramban.';
         status.classList.remove('is-error');
-        status.hidden = false;
-        status.focus();
+        status.hidden = true;
+      }
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Küldés...';
       }
 
-      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' }
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.success !== true) throw new Error('Web3Forms submission failed');
+
+        if (status) {
+          status.textContent = 'Köszönöm megkeresését! Hamarosan felveszem Önnel a kapcsolatot.';
+          status.hidden = false;
+          status.focus();
+        }
+        contactForm.reset();
+      } catch (_) {
+        if (status) {
+          status.textContent = 'Az üzenet küldése nem sikerült. Kérjük, próbálja újra, vagy keressen telefonon.';
+          status.classList.add('is-error');
+          status.hidden = false;
+          status.focus();
+        }
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = defaultButtonText;
+        }
+      }
     });
   }
 
