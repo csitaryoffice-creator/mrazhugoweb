@@ -233,28 +233,36 @@
     });
   }
 
-  const startedInput = document.querySelector('[data-form-started]');
-  if (startedInput) startedInput.value = String(Math.floor(Date.now() / 1000));
-
+  const contactForm = document.querySelector('[data-contact-form]');
   const status = document.querySelector('[data-form-status]');
-  if (status) {
-    const params = new URLSearchParams(window.location.search);
-    const formState = params.get('form');
-    if (formState === 'success') {
-      status.textContent = 'Köszönöm megkeresését! Hamarosan felveszem Önnel a kapcsolatot.';
-      status.hidden = false;
-      status.focus();
-    } else if (formState === 'error') {
-      status.textContent = 'Az üzenet elküldése nem sikerült. Kérjük, ellenőrizze a mezőket, vagy hívjon telefonon.';
-      status.classList.add('is-error');
-      status.hidden = false;
-      status.focus();
-    } else if (formState === 'config') {
-      status.textContent = 'Az űrlap e-mail-címe még nincs beállítva. Kérjük, hívjon telefonon.';
-      status.classList.add('is-error');
-      status.hidden = false;
-      status.focus();
-    }
+  if (contactForm) {
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) return;
+
+      const data = new FormData(contactForm);
+      const recipient = contactForm.dataset.recipient;
+      const subject = `Ajánlatkérés – ${data.get('name') || 'weboldal'}`;
+      const body = [
+        `Név: ${data.get('name') || ''}`,
+        `Telefonszám: ${data.get('phone') || ''}`,
+        `E-mail: ${data.get('email') || ''}`,
+        `Település: ${data.get('city') || 'nincs megadva'}`,
+        `Szolgáltatás: ${data.get('service') || 'nincs kiválasztva'}`,
+        '',
+        'Üzenet:',
+        data.get('message') || 'nincs megadva'
+      ].join('\n');
+
+      if (status) {
+        status.textContent = 'Az e-mail elkészült. A küldéshez erősítse meg az üzenetet a megnyíló levelezőprogramban.';
+        status.classList.remove('is-error');
+        status.hidden = false;
+        status.focus();
+      }
+
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
   }
 
   const year = document.querySelector('[data-year]');

@@ -1,13 +1,14 @@
 # Mráz Hugó – klíma- és villanyszerelő weboldal
 
-Statikus HTML/CSS/JavaScript weboldal a `https://klimaszerelo-villanyszerelo.hu/` domainre előkészítve.
+Build nélküli, statikus HTML/CSS/JavaScript weboldal a DotRoll 50 MB-os ingyenes tárhelyéhez és a `https://klimaszerelo-villanyszerelo.hu/` domainhez előkészítve.
 
-## Élesítés
+## Feltöltés a DotRoll ingyenes tárhelyére
 
-1. A kiszolgálón az SSL-tanúsítvány legyen aktív az oldal nyilvános megnyitásakor.
-2. Minden HTTP-kérést 301-es átirányítással kell a HTTPS-változatra küldeni.
-3. Feltöltés után ellenőrizni kell a kapcsolatfelvételi űrlapot és a PHP `mail()` funkciót.
-4. A `sitemap.xml` címét be kell küldeni a Google Search Console-ba.
+1. A DotRoll ügyfélkapujában aktiválja az ingyenes tárhelyet és állítsa be az FTP-jelszót.
+2. FTP-kapcsolat: `free.dotroll.com`, 21-es port, passzív mód; a felhasználónév a domain neve.
+3. Töltse fel a ZIP tartalmát a tárhely gyökérkönyvtárába.
+4. A DNS-ben a parkoltatási rekordokat a DotRoll útmutatója szerint Freeweb rekordokra kell cserélni. A frissülés jellemzően 1–4 óra.
+5. A HTTPS-változat működése után ellenőrizze a domaint, majd küldje be a `sitemap.xml` címét a Google Search Console-ba.
 
 ## Élesítés előtt
 
@@ -19,6 +20,10 @@ Az adatvédelmi tájékoztatót és az impresszumot a vállalkozás valós adata
 
 Ha elkészül a Google Cégprofil, annak valós URL-je hozzáadható a strukturált adatokhoz. A Search Console hitelesítése DNS-rekorddal vagy a Google által adott HTML-metaelemmel végezhető el.
 
+## Kapcsolati űrlap
+
+A DotRoll ingyenes tárhelye nem futtat PHP-t. Ezért az űrlap nem szerverre küldi az adatokat, hanem egy kitöltött e-mailt nyit meg a látogató levelezőprogramjában. Automatikus e-mail-küldéshez külső űrlapszolgáltató vagy PHP-képes fizetős tárhely szükséges.
+
 ## Helyi megnyitás
 
-Az oldal tartalma egyszerűen megnyitható az `index.html` fájllal. Az ajánlatkérő űrlap teljes tesztjéhez PHP-képes kiszolgáló szükséges.
+Az oldal közvetlenül megnyitható az `index.html` fájllal. Nincs buildfolyamat, npm, Vercel vagy szerveroldali futtatás.
