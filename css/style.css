@@ -240,8 +240,13 @@ h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .submit-button { width: 100%; }
 .form-note { margin: 12px 0 0; color: var(--muted); font-size: 0.78rem; }
-.form-status { margin-bottom: 22px; padding: 14px 16px; border: 1px solid var(--accent); border-radius: 5px; background: var(--accent-dark); color: var(--text); }
-.form-status.is-error { border-color: #ff765f; background: #24100d; }
+.contact-form.has-result { display: grid; min-height: var(--form-result-height); place-items: center; background: #050505; }
+.contact-form.has-result > :not(.form-status) { display: none; }
+.form-status { width: 100%; margin: 0; padding: clamp(30px, 5vw, 58px) clamp(22px, 4vw, 46px); border: 1px solid var(--accent); border-radius: 5px; background: #050505; color: var(--accent); text-align: center; }
+.form-status p { margin: 0; color: inherit; font-size: clamp(1.35rem, 2.4vw, 2rem); font-weight: 820; line-height: 1.35; }
+.form-status.is-error { border-color: var(--accent); background: #050505; color: var(--accent); }
+.form-retry { margin-top: 26px; }
+.form-status[hidden], .form-retry[hidden] { display: none; }
 
 .site-footer { padding: 84px 0 100px; background: #050505; color: var(--muted); }
 .footer-grid { display: grid; grid-template-columns: 1.15fr 0.9fr 0.9fr; gap: 60px; padding-bottom: 56px; }

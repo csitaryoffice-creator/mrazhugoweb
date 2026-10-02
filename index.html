@@ -390,7 +390,10 @@
           <div class="direct-call"><span>Vagy hívjon közvetlenül:</span><a href="tel:+36707014527">06 70 701 4527</a></div>
         </div>
         <form class="contact-form" action="https://api.web3forms.com/submit" method="post" data-contact-form>
-          <div class="form-status" data-form-status role="status" tabindex="-1" hidden></div>
+          <div class="form-status" data-form-status role="status" aria-live="polite" tabindex="-1" hidden>
+            <p data-form-status-message></p>
+            <button class="button button-secondary form-retry" type="button" data-form-retry hidden>Újrapróbálom</button>
+          </div>
           <input type="hidden" name="access_key" value="9f18fd6b-c518-4caa-ae84-071995cfe697">
           <input type="hidden" name="subject" value="Új árajánlatkérés – klimaszerelo-villanyszerelo.hu">
           <input class="honeypot" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">

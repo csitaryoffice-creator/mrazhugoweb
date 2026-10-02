@@ -237,7 +237,30 @@
   const status = document.querySelector('[data-form-status]');
   if (contactForm) {
     const submitButton = contactForm.querySelector('.submit-button');
+    const statusMessage = contactForm.querySelector('[data-form-status-message]');
+    const retryButton = contactForm.querySelector('[data-form-retry]');
     const defaultButtonText = submitButton ? submitButton.textContent : '';
+    const showResult = (message, isError) => {
+      if (!status || !statusMessage) return;
+      contactForm.style.setProperty('--form-result-height', `${contactForm.offsetHeight}px`);
+      statusMessage.textContent = message;
+      status.classList.toggle('is-error', isError);
+      if (retryButton) retryButton.hidden = !isError;
+      status.hidden = false;
+      contactForm.classList.add('has-result');
+      status.focus();
+    };
+
+    if (retryButton) {
+      retryButton.addEventListener('click', () => {
+        contactForm.classList.remove('has-result');
+        contactForm.style.removeProperty('--form-result-height');
+        status.hidden = true;
+        status.classList.remove('is-error');
+        retryButton.hidden = true;
+        submitButton?.focus();
+      });
+    }
 
     contactForm.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -261,19 +284,10 @@
         const result = await response.json().catch(() => ({}));
         if (!response.ok || result.success !== true) throw new Error('Web3Forms submission failed');
 
-        if (status) {
-          status.textContent = 'Köszönöm megkeresését! Hamarosan felveszem Önnel a kapcsolatot.';
-          status.hidden = false;
-          status.focus();
-        }
         contactForm.reset();
+        showResult('Köszönöm megkeresését! Hamarosan felveszem Önnel a kapcsolatot.', false);
       } catch (_) {
-        if (status) {
-          status.textContent = 'Az üzenet küldése nem sikerült. Kérjük, próbálja újra, vagy keressen telefonon.';
-          status.classList.add('is-error');
-          status.hidden = false;
-          status.focus();
-        }
+        showResult('Az üzenet küldése nem sikerült. Kérjük, próbálja újra, vagy keressen telefonon.', true);
       } finally {
         if (submitButton) {
           submitButton.disabled = false;
