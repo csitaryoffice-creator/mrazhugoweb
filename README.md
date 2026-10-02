@@ -1,28 +1,24 @@
 # Mráz Hugó – klíma- és villanyszerelő weboldal
 
-Statikus HTML/CSS/JavaScript weboldal Vercelhez előkészített ajánlatkérő végponttal.
+Statikus HTML/CSS/JavaScript weboldal a `https://klimaszerelo-villanyszerelo.hu/` domainre előkészítve.
 
-## Vercel telepítés
+## Élesítés
 
-1. Importáld a `csitaryoffice-creator/mrazhugoweb` GitHub-repót a Vercelbe.
-2. Framework Preset: **Other**.
-3. Build Command és Output Directory nem szükséges.
-4. Állítsd be a következő környezeti változókat Production, Preview és Development környezetben:
-   - `RESEND_API_KEY`
-   - `RESEND_FROM_EMAIL`
-5. A `RESEND_FROM_EMAIL` feladó domainjét előbb hitelesíteni kell a Resendben.
-
-Az ajánlatkérő űrlapot az `api/contact.js` Vercel Function kezeli.
+1. A kiszolgálón az SSL-tanúsítvány legyen aktív az oldal nyilvános megnyitásakor.
+2. Minden HTTP-kérést 301-es átirányítással kell a HTTPS-változatra küldeni.
+3. Feltöltés után ellenőrizni kell a kapcsolatfelvételi űrlapot és a PHP `mail()` funkciót.
+4. A `sitemap.xml` címét be kell küldeni a Google Search Console-ba.
 
 ## Élesítés előtt
 
-Az oldal forrásában még cserélni kell a következő helyőrzőket a valós adatokra:
+Az adatvédelmi tájékoztatót és az impresszumot a vállalkozás valós adataival kell kiegészíteni:
 
-- `[VÁLLALKOZÁS NEVE]`
-- `[CÍM]`
-- `[GOOGLE BUSINESS PROFILE URL]`
-- `[SEARCH CONSOLE TOKEN]`
+- székhely;
+- nyilvántartási és adózási adatok;
+- tárhelyszolgáltató adatai.
+
+Ha elkészül a Google Cégprofil, annak valós URL-je hozzáadható a strukturált adatokhoz. A Search Console hitelesítése DNS-rekorddal vagy a Google által adott HTML-metaelemmel végezhető el.
 
 ## Helyi megnyitás
 
-Az oldal tartalma egyszerűen megnyitható az `index.html` fájllal. Az ajánlatkérő végpont helyi teszteléséhez Vercel CLI vagy egy Vercel Preview Deployment szükséges.
+Az oldal tartalma egyszerűen megnyitható az `index.html` fájllal. Az ajánlatkérő űrlap teljes tesztjéhez PHP-képes kiszolgáló szükséges.
