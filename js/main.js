@@ -337,7 +337,6 @@
   const chooseCookieConsent = (value) => {
     saveCookieConsent(value);
     cookieBanner.hidden = true;
-    document.querySelector('[data-cookie-settings]')?.focus();
   };
 
   cookieBanner.querySelector('[data-cookie-accept]').addEventListener('click', () => chooseCookieConsent('all'));
