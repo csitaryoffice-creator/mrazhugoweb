@@ -297,6 +297,56 @@
     });
   }
 
+  const cookieName = 'cookie_consent';
+  const readCookieConsent = () => {
+    const match = document.cookie.split('; ').find((entry) => entry.startsWith(`${cookieName}=`));
+    if (match) return decodeURIComponent(match.split('=').slice(1).join('='));
+    if (window.location.protocol === 'file:') return window.localStorage.getItem(cookieName);
+    return null;
+  };
+  const saveCookieConsent = (value) => {
+    const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `${cookieName}=${encodeURIComponent(value)}; Max-Age=15552000; Path=/; SameSite=Lax${secure}`;
+    if (window.location.protocol === 'file:') window.localStorage.setItem(cookieName, value);
+    window.cookieConsent = value;
+    window.dispatchEvent(new CustomEvent('cookieconsentchange', { detail: { consent: value } }));
+  };
+
+  const cookieBanner = document.createElement('section');
+  cookieBanner.className = 'cookie-banner';
+  cookieBanner.setAttribute('data-cookie-banner', '');
+  cookieBanner.setAttribute('role', 'region');
+  cookieBanner.setAttribute('aria-label', 'Sütibeállítások');
+  cookieBanner.innerHTML = `
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-copy">
+        <h2>Sütibeállítások</h2>
+        <p>A weboldal a működéshez szükséges sütit használja a választása megjegyzéséhez. Jelenleg nem használunk analitikai vagy marketingcélú sütiket. <a href="adatvedelmi-tajekoztato.html#sutik">Részletek az adatvédelmi tájékoztatóban</a>.</p>
+      </div>
+      <div class="cookie-banner-actions">
+        <button class="button button-secondary" type="button" data-cookie-necessary>Csak szükséges</button>
+        <button class="button" type="button" data-cookie-accept>Összes elfogadása</button>
+      </div>
+    </div>`;
+  document.body.append(cookieBanner);
+
+  const showCookieBanner = () => {
+    cookieBanner.hidden = false;
+    window.requestAnimationFrame(() => cookieBanner.querySelector('[data-cookie-accept]')?.focus());
+  };
+  const chooseCookieConsent = (value) => {
+    saveCookieConsent(value);
+    cookieBanner.hidden = true;
+    document.querySelector('[data-cookie-settings]')?.focus();
+  };
+
+  cookieBanner.querySelector('[data-cookie-accept]').addEventListener('click', () => chooseCookieConsent('all'));
+  cookieBanner.querySelector('[data-cookie-necessary]').addEventListener('click', () => chooseCookieConsent('necessary'));
+  document.querySelectorAll('[data-cookie-settings]').forEach((button) => button.addEventListener('click', showCookieBanner));
+
+  window.cookieConsent = readCookieConsent();
+  cookieBanner.hidden = Boolean(window.cookieConsent);
+
   const year = document.querySelector('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());
 })();
