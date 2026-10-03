@@ -271,6 +271,10 @@ h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
 .legal-page-shell h1 { max-width: 820px; margin-bottom: 36px; font-size: clamp(2.4rem, 5vw, 4.7rem); }
 .legal-page-content { padding-top: 34px; border-top: 1px solid var(--border-strong); color: var(--muted); }
 .legal-page-content h2 { margin: 34px 0 14px; color: var(--text); font-size: clamp(1.35rem, 2.4vw, 1.8rem); }
+.legal-page-content h3 { margin: 26px 0 10px; color: var(--text); font-size: 1.12rem; letter-spacing: -0.015em; }
+.legal-page-content ul { margin: 0 0 1.4rem; padding-left: 1.35rem; }
+.legal-page-content li { margin-bottom: 0.55rem; padding-left: 0.25rem; }
+.legal-page-content a { overflow-wrap: anywhere; }
 .legal-page-content strong { color: var(--text); }
 .legal-page-back { margin-top: 42px; }
 .mobile-actions { display: none; }
